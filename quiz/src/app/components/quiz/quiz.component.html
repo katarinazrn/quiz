@@ -1,0 +1,55 @@
+<div *ngIf="quiz" class="my-5 col-sm-10 col-md-8 mx-auto">
+  <div class="d-inline-flex flex-column">
+    <h1>{{ quiz.quiz.title.toUpperCase() }}</h1>
+    <small *ngIf="!started">created at {{ quiz.quiz.created_at | date }}</small>
+    <p *ngIf="!started">{{ quiz.quiz.description }}</p>
+
+    <div *ngIf="ended" class="my-4">
+      Your score: <b> {{ score + "/" + quiz.questionsAnswers.length }}</b>
+      <p>{{ message }}</p>
+    </div>
+    <button
+      *ngIf="!started"
+      (click)="startQuiz()"
+      class="btn btn-success my-3"
+      style="width: fit-content"
+    >
+      {{ !ended ? "START QUIZ" : "START AGAIN" }}
+    </button>
+  </div>
+  <div *ngIf="started" class="my-4 questions">
+    <p class="fw-bold py-2 m-0">
+      {{ quiz.questionsAnswers[currentQuestion].question.content }}
+    </p>
+    <div class="row g-2 my-2">
+      <div
+        class="col-sm-6"
+        *ngFor="let answer of quiz.questionsAnswers[currentQuestion].answers"
+        (click)="onAnswer(answer)"
+      >
+        <div
+          class="d-flex flex-column justify-content-center border p-3 answer text-center {{
+            currentAnswerId == answer.id ? status : null
+          }}"
+          style="height: 160px;"
+        >
+          <div
+          
+          *ngIf="answer.image_url"
+            class="d-flex flex-column justify-content-center"
+            style="height: 100%;overflow: hidden"
+          >
+            <img
+              class="w-100"
+              src="{{ baseUrl + '/public/uploads/' + answer.image_url }}"
+            />
+          </div>
+          {{ answer.content }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="!quiz">
+  <h2>The quiz does not exist</h2>
+</div>

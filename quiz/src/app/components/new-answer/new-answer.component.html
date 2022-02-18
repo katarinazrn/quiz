@@ -1,0 +1,46 @@
+<div class="form-group my-1">
+  <label for="name">Answer {{ index + 1 }}</label>
+  <div class="d-flex">
+    <div class="border form-control w-100 d-flex">
+      <label for="{{'file-'+index}}" class="click material-icons text-muted">
+        add_photo_alternate
+        <input
+        (change)="onFileSelected($event)"
+        id="{{'file-'+index}}"
+          class="file-input"
+          type="file"
+          accept="image/*"
+          name="{{ 'image' + questionIndex }}"
+        />
+      </label>
+      <input
+        [(ngModel)]="answer.content"
+        type="text"
+        name="answer"
+        class="border-0 w-100"
+        id="answer"
+        style="outline: none"
+        placeholder="Enter answer"
+      />
+      <span
+        (click)="removeAnswer(index)"
+        class="material-icons text-muted ms-auto my-auto delete-button"
+      >
+        clear
+      </span>
+    </div>
+    <div *ngIf="answer.previewUrl" class="mx-1 preview"  [ngStyle]="{'background-image':'url('+answer.previewUrl+')'}"></div>
+    <div class="ms-2 d-flex">
+      <label class="label-radio">
+        <input
+          (click)="setCorrect(index)"
+          name="{{ 'q-' + questionIndex }}"
+          [checked]="answer.is_correct == 1 ? true : false"
+          type="radio"
+          id="{{ index }}"
+        />
+        <span class="checkmark"></span>
+      </label>
+    </div>
+  </div>
+</div>

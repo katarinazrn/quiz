@@ -1,0 +1,12 @@
+.quiz-card{
+    cursor: pointer;
+    color: white;
+    box-sizing: border-box;
+    background-color: white;
+    transition: background-color 0.5s ease-in;
+    text-decoration: none;
+}
+
+.quiz-card:hover {
+    background-color: aliceblue;
+}

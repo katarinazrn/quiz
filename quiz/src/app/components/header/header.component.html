@@ -1,0 +1,30 @@
+<div class="navbar navbar-expand-md navbar-light shadow-sm bg-light p-2">
+  <a class="navbar-brand" routerLink="/">
+    <img src="../../../assets/logo2.png" style="height: 33px" alt="" />
+  </a>
+  <div
+    (click)="isCollapsed = !isCollapsed"
+    class="navbar-toggler border-0"
+    type="button"
+    data-toggle="'collapse"
+    data-target="#navbarCollapse"
+    aria-controls="navbarCollapse"
+    arria-expanded="'false"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </div>
+  <div
+    class="collapse navbar-collapse"
+    [ngbCollapse]="isCollapsed"
+    id="nabarCollapse"
+  >
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/quizes">Explore quizes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/new-quiz">Create quiz</a>
+      </li>
+    </ul>
+  </div>
+</div>

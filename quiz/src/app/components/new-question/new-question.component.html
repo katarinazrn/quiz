@@ -1,0 +1,36 @@
+<div class="p-3">
+  <div class="form-group my-1">
+    <div class="d-flex py-1">
+      <label>Question {{ questionIndex + 1 }}</label>
+      <span
+        (click)="removeQuestion(questionIndex)"
+        class="material-icons text-muted ms-auto delete-button"
+      >
+        delete_outline
+      </span>
+    </div>
+    <input
+      type="text"
+      name="question"
+      class="form-control text-black question"
+      [(ngModel)]="questionAnswer.question.content"
+      placeholder="Enter question"
+    />
+  </div>
+  <app-new-answer
+    [removeAnswer]="removeAnswer"
+    [setCorrect]="setCorrect"
+    *ngFor="let answer of questionAnswer.answers; let i = index"
+    [answer]="answer"
+    [questionIndex]="questionIndex"
+    [index]="i"
+  ></app-new-answer>
+  <div
+    (click)="addAnotherAnswer(0)"
+    class="form-group d-inline-flex w-auto btn btn-secondary align-middlef my-2"
+    style="cursor: pointer"
+  >
+    <span class="my-auto">Add another answer</span>
+    <span class="material-icons my-auto"> add </span>
+  </div>
+</div>

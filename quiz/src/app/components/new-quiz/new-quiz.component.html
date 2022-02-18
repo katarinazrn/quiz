@@ -1,0 +1,45 @@
+<div class="col-md-8 col-sm-10 mx-auto bg-white text-dark p-3 border my-5">
+  <h1 class="py-3">NEW QUIZ</h1>
+  <form #form="ngForm" (ngSubmit)="addQuiz(form)">
+    <div class="form-group my-2">
+      <label for="title fw-bold" style="font-weight: bold">Quiz title</label>
+      <input
+        ngModel
+        type="text"
+        name="title"
+        class="form-control"
+        id="title"
+        placeholder="Enter quiz title"
+      />
+    </div>
+    <div class="form-group my-2">
+      <label for="description fw-bold" style="font-weight: bold">Quiz description</label>
+      <textarea
+        ngModel
+        type="text"
+        name="description"
+        class="form-control"
+        id="description"
+        placeholder="Enter quiz description"
+      ></textarea>
+    </div>
+    <app-new-question
+      *ngFor="let questionAnswer of questionsAnswers; let i = index"
+      [questionIndex]="i"
+      [questionAnswer]="questionAnswer"
+      [removeQuestion]="removeQuestion"
+    ></app-new-question>
+    <div class="form-group my-2">
+      <div
+        class="form-group d-inline-flex w-auto btn btn-info align-middle my-2"
+        style="cursor: pointer"
+      >
+        <span class="my-auto" (click)="addAnotherQuestion()"
+          >Add next question</span
+        >
+        <span class="material-icons my-auto"> add </span>
+      </div>
+      <button class="btn btn-success ms-2" type="submit">Create Quiz</button>
+    </div>
+  </form>
+</div>

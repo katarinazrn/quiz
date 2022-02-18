@@ -1,0 +1,7 @@
+<div class="row my-5 row-cols-1 row-cols-md-3 g-4">
+  <div class="col" *ngFor="let quiz of quzies">
+    <a routerLink="{{'/quizes/'+quiz.quiz.id}}" class="card h-100 rounded-0  text-dark p-3 text-center quiz-card">
+      <h4>{{ quiz.quiz.title }}</h4>
+    </a>
+  </div>
+</div>
